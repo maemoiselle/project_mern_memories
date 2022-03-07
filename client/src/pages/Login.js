@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { getPosts } from '../actions/posts';
 import SignIn from '../components-custom/SignIn';
 
 export default function Login() {
+  const [currentId, setCurrentId] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
+
   return (
     <React.Fragment>
       <SignIn />
