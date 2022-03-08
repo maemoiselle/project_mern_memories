@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { emphasize, fade, darken, lighten } from '@material-ui/core/styles/colorManipulator';
-
+import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
-
+import { getCrafts } from '../actions/posts'
+import Craft from '../components/Craft/craft';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -22,17 +23,21 @@ const useStyles = makeStyles((theme) => ({
 }
 ));
 
-const SkillLevels = (props) => {
+
+const SkillLevels = ({ setCurrentId, level }) => {
+  const crafts = useSelector((state) => state.crafts);
   const classes = useStyles();
+
+ 
 
   return (
 <section>
   <Container maxWidth="lg">
     <Box  pt={2}>
-      <Typography variant="body2" paragraph={true}>Home/Crafts by Skill/{props.level}</Typography>
+      <Typography variant="body2" paragraph={true}>Home/Crafts by Skill/{level}</Typography>
     </Box>
     <Box pb={3} pt={2} textAlign="left">
-      <Typography variant="h4" gutterBottom={true}>Explore {props.level} DIY Crafts for All Ages</Typography>
+      <Typography variant="h4" gutterBottom={true}>Explore {level} DIY Crafts for All Ages</Typography>
     </Box>
     <Box pb={3} textAlign="center">
       <Grid container spacing={2}>
@@ -95,32 +100,16 @@ const SkillLevels = (props) => {
       <Typography variant="h5" gutterBottom={true}>Explore Trending Crafts</Typography>
     </Box>
     <Box pb={3} textAlign="left">
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={6}>
-          <Card classes={classes.skillCard}>
-            <CardActionArea href="">
-              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" alt="" className={classes.image} />
-              <Box pl={2}>
-                <Typography variant="body1" gutterBottom={true}>[Craft Name]</Typography>
-              </Box>
-            </CardActionArea>
-          </Card>
-        </Grid>
-
-        <Grid item xs={6} md={6}>
-          <Card classes={classes.skillCard}>
-            <CardActionArea href="">
-              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" alt="" className={classes.image} />
-              <Box pl={2}>
-                <Typography variant="body1" gutterBottom={true}>[Craft Name]</Typography>
-              </Box>
-            </CardActionArea>
-          </Card>
-        </Grid>
+      <Grid container>
+      {crafts.map((craft) => (
+        <Grid key={craft._id} item xs={6} sm={6} md={6}>
+            <Craft craft={craft} setCurrentId={setCurrentId} />
+          </Grid>
+      ))}
       </Grid>
     </Box>
     <Box textAlign="center">
-      <Button href="#" color="primary">See all {props.level} crafts</Button>
+      <Button href="#" color="primary">See all {level} crafts</Button>
     </Box>
   </Container>
 </section>
