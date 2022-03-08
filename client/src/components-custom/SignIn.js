@@ -9,7 +9,7 @@ import {
 import { Redirect } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getPosts } from '../actions/posts';
-import Posts from '../components/Posts/Posts';
+import UserSelect from '../components/Posts/Post/userSelect';
 
 
 
@@ -70,7 +70,7 @@ export default function Component(props) {
       <Container maxWidth="xs">
       <Grid container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} />
+              <UserSelect setCurrentId={setCurrentId} />
             </Grid>
             <Grid item xs={12} sm={4}>
             </Grid>
