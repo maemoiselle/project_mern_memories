@@ -55,6 +55,7 @@ export default function Component(props) {
 
   const [state, setState] = React.useState({ open: false });
   const [viewAccount, setViewAccount] = useState("");
+  const [viewCrafts, setViewCrafts] = useState("");
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -66,6 +67,10 @@ export default function Component(props) {
 
   const handleSubmitAccount = (event) => {
     setViewAccount(true)
+};
+
+const handleSubmitCrafts = (event) => {
+  setViewCrafts(true)
 };
 
 
@@ -97,7 +102,7 @@ export default function Component(props) {
         </ListItemIcon>
         <ListItemText primary="Search" />
       </ListItem>
-      <ListItem button key="DIYCrafts">
+      <ListItem button key="DIYCrafts" onClick={() => handleSubmitCrafts()}>
         <ListItemIcon>
           <PaletteRoundedIcon />
         </ListItemIcon>
@@ -131,6 +136,7 @@ export default function Component(props) {
   </div>
 </Drawer>
 { viewAccount ? <Redirect to="/Login"></Redirect> : <div></div>}
+{ viewCrafts ? <Redirect to="/Craftskill"></Redirect> : <div></div>}
 </AppBar>
   );
 }
