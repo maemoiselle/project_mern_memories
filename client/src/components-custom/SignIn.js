@@ -53,7 +53,9 @@ export default function Component(props) {
   const classes = useStyles();
 
   const handleLogin = (event) => {
-    if (username !== "") {
+
+    if (username === "alipatri") {
+      //dispatch(getPosts(1));
       setNotLoggedIn(false);
     } else {
       
@@ -61,20 +63,11 @@ export default function Component(props) {
 
   };
 
-  const handleChange = (event) => {
-    setUsername(event.target.value);
-  };
 
   return (
     <section>
       <Container maxWidth="xs">
       <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-            </Grid>
-          </Grid>
         <Box pt={8} pb={10}>
           <Box mx={3} mb={6} textAlign="center">
             <Link href="#" variant="h4" color="inherit" underline="none">
@@ -94,26 +87,11 @@ export default function Component(props) {
             <form noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <InputLabel>Username</InputLabel>
-                    <Select
-                      labelId="username-label"
-                      id="username"
-                      value={username}
-                      onChange={handleChange} 
-                    >
-                      <MenuItem value={"thisisusername"}>
-                        thisisusername
-                      </MenuItem>
-                      <MenuItem value={"usernamey"}>usernamey</MenuItem>
-                      <MenuItem value={"wowusername"}>wowusername</MenuItem>
-                    </Select>
-                  </FormControl>
+                <TextField variant="outlined" required fullWidth name="username" id="username" label="Username" onInput={ e =>setUsername(e.target.value)} />
                 </Grid>
               </Grid>
               <Box my={3}>
                 <Button
-                  type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
@@ -140,9 +118,9 @@ export default function Component(props) {
             </Box>
           </Box>
         </Box>
+        </Grid>
       </Container>
-
-      {notLoggedIn ? <div></div> : <Redirect to="/Product" />}
+      {notLoggedIn ? <div></div> : <Redirect to={{ pathname: "/Product", state: { username: {username}} }}/>}
     </section>
   );
 }

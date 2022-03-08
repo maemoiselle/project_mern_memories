@@ -9,6 +9,7 @@ import MapPage from './pages/Map.js';
 import ProductPage from './pages/Product.js';
 import LoginPage from './pages/Login.js';
 import ShoppinglistPage from './pages/Shoppinglist.js';
+import Product from './pages/Product.js';
 
 
 import { getPosts } from './actions/posts';
@@ -26,7 +27,7 @@ const App = () => {
           <Route exact path="/map">
             <MapPage />
           </Route>
-          <Route exact path="/product">
+          <Route path="/product" render={(props) => <Product {...props}/>}>
             <ProductPage />
           </Route>
           <Route exact path="/login">
