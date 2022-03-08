@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import {
   emphasize,
@@ -6,10 +6,12 @@ import {
   darken,
   lighten,
 } from "@material-ui/core/styles/colorManipulator";
-import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { getPosts } from '../actions/posts';
+import Posts from '../components/Posts/Posts';
 
-import clsx from "clsx";
+
 
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
@@ -41,6 +43,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Component(props) {
   const [username, setUsername] = React.useState("");
   const [notLoggedIn, setNotLoggedIn] = useState(true);
+  const [currentId, setCurrentId] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
 
   const classes = useStyles();
 
@@ -60,6 +68,13 @@ export default function Component(props) {
   return (
     <section>
       <Container maxWidth="xs">
+      <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+            <Grid item xs={12} sm={7}>
+              <Posts setCurrentId={setCurrentId} />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+            </Grid>
+          </Grid>
         <Box pt={8} pb={10}>
           <Box mx={3} mb={6} textAlign="center">
             <Link href="#" variant="h4" color="inherit" underline="none">
