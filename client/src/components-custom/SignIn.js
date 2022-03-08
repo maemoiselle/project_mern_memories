@@ -12,7 +12,7 @@ import { getPosts } from '../actions/posts';
 import Posts from '../components/Posts/Posts';
 
 
-
+import Craftskill from '../pages/Craftskill';
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
@@ -121,7 +121,7 @@ export default function Component(props) {
         </Box>
         </Grid>
       </Container>
-      {notLoggedIn ? <div></div> : <Redirect to={{ pathname: "/Product", state: { username: {username}} }}/>}
+      {notLoggedIn ? <div></div> : <Redirect to={{ pathname: "/Craftskill", state: {username: username}}}/>}
     </section>
   );
 }
