@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 ));
 
 
-const SkillLevels = ({ setCurrentId, level }) => {
+const SkillLevels = ({ setCurrentId, level, difficulty }) => {
   const crafts = useSelector((state) => state.crafts);
   const classes = useStyles();
 
@@ -100,13 +100,12 @@ const SkillLevels = ({ setCurrentId, level }) => {
       <Typography variant="h5" gutterBottom={true}>Explore Trending Crafts</Typography>
     </Box>
     <Box pb={3} textAlign="left">
-      <Grid container>
+  
       {crafts.map((craft) => (
-        <Grid key={craft._id} item xs={6} sm={6} md={6}>
-            <Craft craft={craft} setCurrentId={setCurrentId} />
+        <Grid key={craft._id} item xs={12} sm={12} md={12}>
+            <Craft craft={craft} setCurrentId={setCurrentId} difficulty={difficulty} />
           </Grid>
       ))}
-      </Grid>
     </Box>
     <Box textAlign="center">
       <Button href="#" color="primary">See all {level} crafts</Button>

@@ -1,13 +1,18 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { useLocation, Link } from "react-router-dom";
 import StructureDiv from '../components/__structures/StructureDiv';
 import Navbar from '../components-custom/Navbar';
 import CraftDetailHead from '../components-custom/CraftDetailHead';
 import ProductDetails from '../components-custom/ProductDetails';
+import { useDispatch } from 'react-redux';
 
-class Craftdetail extends React.Component {
+const Craftdetail = (props) => {
+  const [currentId, setCurrentId] = useState(0);
+  const location = useLocation();
+  const state = location.state;
+  console.log(state);
+  const dispatch = useDispatch();
 
-  render() {
   return (
     <React.Fragment>
       <StructureDiv
@@ -22,7 +27,7 @@ class Craftdetail extends React.Component {
     </React.Fragment>
   );
 }
-}
+
 
 export default Craftdetail;
 
