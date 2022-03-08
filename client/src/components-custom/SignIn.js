@@ -67,6 +67,7 @@ export default function Component(props) {
   return (
     <section>
       <Container maxWidth="xs">
+      <Posts setCurrentId={setCurrentId} />
       <Grid container justify="space-between" alignItems="stretch" spacing={3}>
         <Box pt={8} pb={10}>
           <Box mx={3} mb={6} textAlign="center">
