@@ -47,7 +47,10 @@ export default function Component({
     `../images/craftImages/${location.state.craftImg}.png`
   );
   const materials = useSelector((state) => state.materials);
+  
   const classes = useStyles();
+  
+
 
   return (
     <section>
@@ -59,7 +62,7 @@ export default function Component({
         </Box>
         <Box pb={2} px={1} textAlign="center">
           <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
+            src={location.state.craftImg}
             alt=""
             className={classes.image}
           />

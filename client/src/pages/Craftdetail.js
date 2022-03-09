@@ -5,7 +5,7 @@ import Navbar from "../components-custom/Navbar";
 import CraftDetailHead from "../components-custom/CraftDetailHead";
 import ProductDetails from "../components-custom/ProductDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getMaterials } from "../actions/posts";
+import { getItems, getMaterials } from "../actions/posts";
 
 const Craftdetail = ({craftName, craftImg, craftId, difficulty}) => {
   const [currentId, setCurrentId] = useState(0);
@@ -17,6 +17,7 @@ const Craftdetail = ({craftName, craftImg, craftId, difficulty}) => {
   useEffect(() => {
     dispatch(getMaterials());
   }, [currentId, dispatch]);
+
 
   return (
     <React.Fragment>
