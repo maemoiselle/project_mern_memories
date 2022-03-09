@@ -87,9 +87,9 @@ const ProductDetails = ({
     if (productData.discount !== 0.00) {
       return (
         <Container>
-          <Box direction="row">
+          <Box>
             <Grid container>
-              <Grid item xs={12}>
+              <Grid item xs={12} md={3}>
                 <Card classes={classes.skillCard}>
                 <CardMedia
                 component="img"
@@ -129,10 +129,8 @@ const ProductDetails = ({
       );
     } else {
       return (
-        <Container>
-          <Box>
             <Grid container>
-              <Grid item xs={12}>
+              <Grid item xs={12} md={3}>
                 <Card classes={classes.skillCard}>
                 <CardMedia
                 component="img"
@@ -159,8 +157,6 @@ const ProductDetails = ({
                 </Card>
               </Grid>
             </Grid>
-          </Box>
-        </Container>
       );
     }
   } else {

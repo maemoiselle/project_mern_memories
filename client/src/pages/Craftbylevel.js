@@ -22,7 +22,7 @@ const Craftbylevel = (props) => {
   return (
     <React.Fragment>
     <Navbar />
-      <SkillLevels level= {location.state.level} setCurrentId={setCurrentId}/>
+      <SkillLevels level= {location.state.level} setCurrentId={setCurrentId} username= {location.state.username}/>
     </React.Fragment>
   );
 }

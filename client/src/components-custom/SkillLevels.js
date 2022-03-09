@@ -24,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
 ));
 
 
-const SkillLevels = ({ setCurrentId, level, difficulty }) => {
+const SkillLevels = ({ setCurrentId, level, difficulty, username }) => {
   const crafts = useSelector((state) => state.crafts);
   const classes = useStyles();
+  console.log(username)
 
  
 
@@ -103,7 +104,7 @@ const SkillLevels = ({ setCurrentId, level, difficulty }) => {
   
       {crafts.map((craft) => (
         <Grid key={craft._id} item xs={12} sm={12} md={12}>
-            <Craft craft={craft} setCurrentId={setCurrentId} difficulty={difficulty} />
+            <Craft craft={craft} setCurrentId={setCurrentId} difficulty={difficulty} username={username} />
           </Grid>
       ))}
     </Box>

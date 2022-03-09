@@ -10,13 +10,13 @@ import { useLocation, Link } from "react-router-dom";
 const Craftskill = (props) => {
   const location = useLocation();
   const state = location.state;
-  console.log(state);
+  console.log(state.username);
  
   return (
     <React.Fragment>
     <Navbar/>
       <StructureContainer
-        bucket1={[<StructureDiv bucket1={[<Skills />]} />]}
+        bucket1={[<StructureDiv bucket1={[<Skills username = {location.state.username}/>]} />]}
       />
     </React.Fragment>
   );

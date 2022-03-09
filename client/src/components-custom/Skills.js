@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   emphasize,
@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Component(props) {
+  const location = useLocation();
+  const state = location.state;
+  console.log(state.username);
   const [currentId, setCurrentId] = useState(0);
   const [level, setLevel] = useState("value");
   const dispatch = useDispatch();
@@ -64,7 +67,7 @@ export default function Component(props) {
                 <Link
                   to={{
                     pathname: "/Craftbylevel",
-                    state: { level: "Beginner", difficulty: 1 },
+                    state: { level: "Beginner", difficulty: 1, username: location.state.username },
                   }}
                 >
                   <CardActionArea onClick={(event) => setLevel("beginner")}>
@@ -93,7 +96,7 @@ export default function Component(props) {
                 <Link
                   to={{
                     pathname: "/Craftbylevel",
-                    state: { level: "Intermediate", difficulty: 2 },
+                    state: { level: "Intermediate", difficulty: 2, username: location.state.username },
                   }}
                 >
                   <CardActionArea onClick={(event) => setLevel("intermediate")}>
@@ -123,7 +126,7 @@ export default function Component(props) {
                   <Link
                     to={{
                       pathname: "/Craftbylevel",
-                      state: { level: "Advanced", difficulty: 3 },
+                      state: { level: "Advanced", difficulty: 3, username: location.state.username },
                     }}
                   >
                     <CardActionArea onClick={(event) => setLevel("advanced")}>

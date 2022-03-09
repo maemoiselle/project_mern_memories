@@ -132,9 +132,9 @@ export default function Component({
         </Box>
         <StructureDiv
           bucket1={[
-            <Box pb={3} textAlign="left">
+            <Box pb={3} textAlign="left" spacing={2}>
               {materials.map((material) => (
-                <Grid key={material._id} item xs={12} sm={12} md={12}>
+                <Grid key={material._id} item xs={12} sm={12} md={12} direction="row">
                   <ProductDetails
                     material={material}
                     setCurrentId={location.state.setCurrentID}

@@ -7,7 +7,7 @@ import ProductDetails from "../components-custom/ProductDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { getItems, getMaterials } from "../actions/posts";
 
-const Craftdetail = ({craftName, craftImg, craftId, difficulty}) => {
+const Craftdetail = ({craftName, craftImg, craftId, difficulty, username}) => {
   const [currentId, setCurrentId] = useState(0);
   const location = useLocation();
   const state = location.state;
@@ -25,7 +25,7 @@ const Craftdetail = ({craftName, craftImg, craftId, difficulty}) => {
         bucket1={[
           <Navbar />,
 
-          <CraftDetailHead setCurrentID={setCurrentId}/>,
+          <CraftDetailHead setCurrentID={setCurrentId} username={location.state.username}/>,
 
         ]}
       />

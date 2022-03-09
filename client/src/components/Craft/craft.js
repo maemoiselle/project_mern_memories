@@ -15,10 +15,11 @@ import { useLocation, Link } from "react-router-dom";
 import Craftdetail from "../../pages/Craftdetail";
 
 
-const Craft = ({ craft, setCurrentId, difficulty }) => {
+const Craft = ({ craft, setCurrentId, difficulty, username }) => {
   const location = useLocation();
   const state = location.state;
   console.log(state);
+  console.log(username)
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -34,6 +35,7 @@ const Craft = ({ craft, setCurrentId, difficulty }) => {
                 difficulty: craft.difficultyLevel,
                 craftId: craft.craftId,
                 craftImg: craft.imageName,
+                username: username
 
               },
             }}
