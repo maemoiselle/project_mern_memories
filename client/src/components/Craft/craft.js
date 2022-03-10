@@ -8,6 +8,7 @@ import {
   Button,
   Typography,
   Grid,
+  Chip
 } from "@material-ui/core/";
 import { useDispatch } from "react-redux";
 import useStyles from "./styles";
@@ -20,6 +21,7 @@ const Craft = ({
   difficulty,
   username,
   shoppingListId,
+  level
 }) => {
   const location = useLocation();
   const state = location.state;
@@ -30,7 +32,7 @@ const Craft = ({
 
   if (craft.difficultyLevel === location.state.difficulty) {
     return (
-      <Box mb={2}>
+      <Box mt={2}>
         <Card className={classes.cards}>
           <Link
             to={{
@@ -43,15 +45,22 @@ const Craft = ({
                 username: username,
                 shoppingListId: location.state.shoppingListId,
               },
-            }}
+            }}  style={{ textDecoration: "none", color: "#666" }}
           >
+          
             <CardActionArea href="">
               <img src={craft.imageName} alt="" className={classes.image} />
-              <Box pl={2}>
+              <Box pl={3}>
                 <Typography variant="body1" gutterBottom={true}>
                   {craft.craftName}
                 </Typography>
               </Box>
+              <Box p={2}>
+              <Chip
+          color="secondary"
+          label={location.state.level}
+        />
+        </Box>
             </CardActionArea>
           </Link>
         </Card>

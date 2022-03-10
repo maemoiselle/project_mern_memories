@@ -53,7 +53,7 @@ const ProductDetails = ({
     amountSaved: "",
     discountPrice: "",
     aisle: "",
-    aisleImage:""
+    aisleImage: "",
   });
   const location = useLocation();
   const state = location.state;
@@ -124,7 +124,7 @@ const ProductDetails = ({
     if (productData.discount !== 0.0) {
       return (
         <Container>
-          <Box>
+          <Box mt={3}>
             <Grid container>
               <Grid item xs={12} md={3}>
                 <Card classes={classes.skillCard}>
@@ -136,7 +136,7 @@ const ProductDetails = ({
                   />
                   <Box ml={2} direction="row">
                     <Typography variant="subtitle1">
-                      {productData.itemName}
+                      {productData.itemName}     .
                       <Chip
                         color="secondary"
                         label={aisleLabel}
@@ -157,7 +157,7 @@ const ProductDetails = ({
                       You save: ${productData.amountSaved}
                     </Typography>
                   </Box>
-                  <Box mr={1} mb={1} textAlign="center">
+                  <Box mr={1} my={2} textAlign="center">
                     <Button
                       variant="contained"
                       color="primary"
@@ -188,6 +188,7 @@ const ProductDetails = ({
     } else {
       return (
         <Container>
+        <Box mt={3}></Box>
           <Grid container>
             <Grid item xs={12} md={3}>
               <Card classes={classes.skillCard}>
@@ -199,7 +200,7 @@ const ProductDetails = ({
                 />
                 <Box ml={2} direction="row">
                   <Typography variant="subtitle1">
-                    {productData.itemName}
+                    {productData.itemName}     .
                     <Chip
                       color="secondary"
                       label={aisleLabel}
@@ -212,7 +213,7 @@ const ProductDetails = ({
                     ${productData.discountPrice}
                   </Typography>
                 </Box>
-                <Box mr={1} mb={1} textAlign="center">
+                <Box mr={1} my={2} textAlign="center">
                   <Button
                     variant="contained"
                     color="primary"

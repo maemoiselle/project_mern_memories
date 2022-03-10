@@ -16,7 +16,7 @@ const theme = createTheme({
         light: '#4a9ca7',
         main: '#3373b7',
         // dark: will be calculated from palette.secondary.main,
-        contrastText: '#ffcc00',
+        contrastText: '#fff',
       },
       neutral: {
         white:'#FFF',

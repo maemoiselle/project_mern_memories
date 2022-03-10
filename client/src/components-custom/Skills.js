@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  emphasize,
-  fade,
-  darken,
-  lighten,
-} from "@material-ui/core/styles/colorManipulator";
 import { useDispatch, useSelector } from "react-redux";
-
-import clsx from "clsx";
 
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
@@ -17,15 +9,19 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import { CardMedia } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/700.css";
-import { getCrafts } from "../actions/posts";
+import Beginner from "../images/skills/Beginner.png";
+import Intermediate from "../images/skills/Intermediate.png";
+import Advanced from "../images/skills/Advanced.png";
 
 const useStyles = makeStyles((theme) => ({
   image: {
     maxWidth: "100%",
   },
+  maxHeight: "100%",
 }));
 
 export default function Component(props) {
@@ -62,7 +58,7 @@ export default function Component(props) {
             </Typography>
           </Box>
           <Grid container>
-            <Grid item xs={9}>
+            <Grid item xs={12} m={2}>
               <Card classes={classes.skillCard}>
                 <Link
                   to={{
@@ -74,7 +70,7 @@ export default function Component(props) {
                       shoppingListId: location.state.shoppingListId,
                     },
                   }}
-                  style={{ textDecoration: 'none', color: "#489ca7" }}
+                  style={{ textDecoration: "none", color: "#489ca7" }}
                 >
                   <CardActionArea onClick={(event) => setLevel("beginner")}>
                     <Box ml={2} my={1}>
@@ -82,22 +78,19 @@ export default function Component(props) {
                         Beginner
                       </Typography>
                     </Box>
+                    <CardMedia
+                    component="img"
+                    image={Beginner}
+                    alt="Beach Themed Fram"
+                  />
                   </CardActionArea>
                 </Link>
               </Card>
             </Grid>
-            <Grid item xs={3}>
-              <Box textAlign="right">
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-                  alt=""
-                  className={classes.image}
-                />
-              </Box>
-            </Grid>
           </Grid>
+          <Box m={3}></Box>
           <Grid container>
-            <Grid item xs={9}>
+            <Grid item xs={12}>
               <Card classes={classes.skillCard}>
                 <Link
                   to={{
@@ -109,7 +102,7 @@ export default function Component(props) {
                       shoppingListId: location.state.shoppingListId,
                     },
                   }}
-                  style={{ textDecoration: 'none', color:"#3373b7"}}
+                  style={{ textDecoration: "none", color: "#3373b7" }}
                 >
                   <CardActionArea onClick={(event) => setLevel("intermediate")}>
                     <Box ml={2} my={1}>
@@ -117,23 +110,20 @@ export default function Component(props) {
                         Intermediate
                       </Typography>
                     </Box>
+                    <CardMedia
+                    component="img"
+                    image={Intermediate}
+                    alt="Custom Doormat"
+                  />
                   </CardActionArea>
                 </Link>
               </Card>
             </Grid>
-            <Grid item xs={3}>
-              <Box textAlign="right">
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-                  alt=""
-                  className={classes.image}
-                />
-              </Box>
-            </Grid>
           </Grid>
           <Box>
+          <Box m={3}></Box>
             <Grid container>
-              <Grid item xs={9}>
+              <Grid item xs={12}>
                 <Card classes={classes.skillCard}>
                   <Link
                     to={{
@@ -145,7 +135,7 @@ export default function Component(props) {
                         shoppingListId: location.state.shoppingListId,
                       },
                     }}
-                    style={{ textDecoration: 'none', color: "#CF202F" }}
+                    style={{ textDecoration: "none", color: "#CF202F" }}
                   >
                     <CardActionArea onClick={(event) => setLevel("advanced")}>
                       <Box ml={2} my={1}>
@@ -153,18 +143,15 @@ export default function Component(props) {
                           Advanced
                         </Typography>
                       </Box>
+                      <CardMedia
+                  component="img"
+                  image={Advanced}
+                  alt="Blinged Out Letter"
+                />
                     </CardActionArea>
                   </Link>
+                  
                 </Card>
-              </Grid>
-              <Grid item xs={3}>
-                <Box textAlign="right">
-                  <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-                    alt=""
-                    className={classes.image}
-                  />
-                </Box>
               </Grid>
             </Grid>
           </Box>
