@@ -14,12 +14,17 @@ import useStyles from "./styles";
 import { useLocation, Link } from "react-router-dom";
 import Craftdetail from "../../pages/Craftdetail";
 
-
-const Craft = ({ craft, setCurrentId, difficulty, username }) => {
+const Craft = ({
+  craft,
+  setCurrentId,
+  difficulty,
+  username,
+  shoppingListId,
+}) => {
   const location = useLocation();
   const state = location.state;
   console.log(state);
-  console.log(username)
+  console.log(username);
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -35,17 +40,13 @@ const Craft = ({ craft, setCurrentId, difficulty, username }) => {
                 difficulty: craft.difficultyLevel,
                 craftId: craft.craftId,
                 craftImg: craft.imageName,
-                username: username
-
+                username: username,
+                shoppingListId: location.state.shoppingListId,
               },
             }}
           >
             <CardActionArea href="">
-              <img
-                src={craft.imageName}
-                alt=""
-                className={classes.image}
-              />
+              <img src={craft.imageName} alt="" className={classes.image} />
               <Box pl={2}>
                 <Typography variant="body1" gutterBottom={true}>
                   {craft.craftName}

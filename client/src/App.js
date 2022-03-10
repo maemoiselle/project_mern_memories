@@ -25,7 +25,7 @@ const App = () => {
     <Router>
         <Switch>
           <Route exact path="/">
-            <IndexPage />
+            <LoginPage />
           </Route>
           <Route exact path="/map">
             <MapPage />
@@ -33,8 +33,8 @@ const App = () => {
           <Route path="/product" render={(props) => <Product {...props}/>}>
             <ProductPage />
           </Route>
-          <Route exact path="/login">
-            <LoginPage />
+          <Route exact path="/home">
+            <IndexPage />
           </Route>
           <Route exact path="/shoppinglist">
             <ShoppinglistPage />

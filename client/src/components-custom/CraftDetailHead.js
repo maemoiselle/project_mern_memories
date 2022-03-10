@@ -35,6 +35,7 @@ export default function Component({
   craftImg,
   craftId,
   difficulty,
+  shoppingListId
 }) {
   const location = useLocation();
   const state = location.state;
@@ -145,7 +146,7 @@ export default function Component({
         <Box textAlign="center">
       <Link to={{
         pathname: "/shoppingList",
-        state: { username: location.state.username },
+        state: { username: location.state.username, shoppingListId: location.state.shoppingListId },
       }}>View my Shoppinglist</Link>
     </Box>
         ,

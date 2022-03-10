@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Component(props) {
   const location = useLocation();
   const state = location.state;
-  console.log(state.username);
+  console.log(state);
   const [currentId, setCurrentId] = useState(0);
   const [level, setLevel] = useState("value");
   const dispatch = useDispatch();
@@ -67,8 +67,14 @@ export default function Component(props) {
                 <Link
                   to={{
                     pathname: "/Craftbylevel",
-                    state: { level: "Beginner", difficulty: 1, username: location.state.username },
+                    state: {
+                      level: "Beginner",
+                      difficulty: 1,
+                      username: location.state.username,
+                      shoppingListId: location.state.shoppingListId,
+                    },
                   }}
+                  style={{ textDecoration: 'none', color: "#489ca7" }}
                 >
                   <CardActionArea onClick={(event) => setLevel("beginner")}>
                     <Box ml={2} my={1}>
@@ -96,8 +102,14 @@ export default function Component(props) {
                 <Link
                   to={{
                     pathname: "/Craftbylevel",
-                    state: { level: "Intermediate", difficulty: 2, username: location.state.username },
+                    state: {
+                      level: "Intermediate",
+                      difficulty: 2,
+                      username: location.state.username,
+                      shoppingListId: location.state.shoppingListId,
+                    },
                   }}
+                  style={{ textDecoration: 'none', color:"#3373b7"}}
                 >
                   <CardActionArea onClick={(event) => setLevel("intermediate")}>
                     <Box ml={2} my={1}>
@@ -126,8 +138,14 @@ export default function Component(props) {
                   <Link
                     to={{
                       pathname: "/Craftbylevel",
-                      state: { level: "Advanced", difficulty: 3, username: location.state.username },
+                      state: {
+                        level: "Advanced",
+                        difficulty: 3,
+                        username: location.state.username,
+                        shoppingListId: location.state.shoppingListId,
+                      },
                     }}
+                    style={{ textDecoration: 'none', color: "#CF202F" }}
                   >
                     <CardActionArea onClick={(event) => setLevel("advanced")}>
                       <Box ml={2} my={1}>

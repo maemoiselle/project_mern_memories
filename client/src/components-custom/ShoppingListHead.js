@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Component({
-  setCurrentID,
+  currentId,
   craftName,
   craftImg,
   craftId,
@@ -40,39 +40,35 @@ export default function Component({
   const state = location.state;
   console.log(state);
   const [listData, setListData] = useState([])
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
+  const [index, setIndex] = useState(0);
   const [imgLink, setImgLink] = useState(
     `../images/craftImages/${location.state.craftImg}.png`
   );
   const materials = useSelector((state) => state.materials);
-  
-  const classes = useStyles();
-  
-  useEffect(() => {
-    const url = "http://localhost:8080/AllShoppingLists";
 
+  const classes = useStyles();
+
+  useEffect(() => {
+    const url = "http://localhost:8080/ShoppingListById/?ident=";
 
     const fetchData = async (id) => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(`${url}${id}`);
         const json = await response.json();
-        const allProducts = json.map((item) => ({
-            itemId: item.itemId,
-            shoppingListId: item.shoppingListIdReal,
+        const productsListed = json.map((item) => ({
             username: item.username,
-            categoryId: item.categoryId
+            shoppingListId: item.shoppingListIdReal,
+            itemId: item.itemId,
           }));
-          setListData(allProducts);
-          const itemIdArr = json.map((item) => (item.itemId));
-          setItems(itemIdArr)
+        setListData(productsListed);
       } catch (error) {
         console.log("you have an error", error);
       }
     };
 
-    fetchData();
+    fetchData(location.state.shoppingListId);
   }, []);
-
 
   return (
     <section>
@@ -83,17 +79,26 @@ export default function Component({
           </Typography>
         </Box>
         <Box pb={3} pt={2} textAlign="left">
-        <Typography variant="h2" gutterBottom={true}>Shopping List</Typography>
-      </Box>
-        <Button color="secondary" variant="outlined">Invite Others</Button>
+          <Typography variant="h2" gutterBottom={true}>
+            Shopping List
+          </Typography>
+        </Box>
+        <Button color="secondary" variant="outlined">
+          Invite Others
+        </Button>
         <StructureDiv
           bucket1={[
             <Box pb={3} textAlign="left" spacing={2}>
-              {materials.map((material) => (
-                <Grid key={material._id} item xs={12} sm={12} md={12} direction="row">
-                  <ListDetails
-                  items= {items}
-                  />
+              {listData.map((data) => (
+                <Grid
+                  key={listData._id}
+                  item
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  direction="row"
+                >
+                  <ListDetails listData={listData[index]} index={index} setIndex={setIndex} />
                 </Grid>
               ))}
             </Box>,

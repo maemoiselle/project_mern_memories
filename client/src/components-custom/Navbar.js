@@ -135,8 +135,8 @@ const handleSubmitCrafts = (event) => {
     </List>
   </div>
 </Drawer>
-{ viewAccount ? <Redirect to="/Login"></Redirect> : <div></div>}
-{ viewCrafts ? <Redirect to="/Craftskill"></Redirect> : <div></div>}
+{ viewAccount ? <Redirect to="/"></Redirect> : <div></div>}
+{ viewCrafts ? <Redirect to={{ pathname: "/craftskill", state: { username: 'alipatri', shoppingListId: 1 } }}></Redirect> : <div></div>}
 </AppBar>
   );
 }

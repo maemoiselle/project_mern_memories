@@ -34,11 +34,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ListDetails = ({
-    items,
-    username,
-    itemId
+    listData, currentId, index, setIndex
 }) => {
-    console.log(items)
+    console.log(listData)
   const [productData, setProductData] = useState({
     itemId: "",
     itemName: "",
@@ -55,6 +53,7 @@ const ListDetails = ({
   const classes = useStyles();
 
   useEffect(() => {
+    
     const url = "http://localhost:8080/Item/";
 
 
@@ -62,6 +61,7 @@ const ListDetails = ({
       try {
         const response = await fetch(`${url}${id}`);
         const json = await response.json();
+        console.log(json);
 
         const discountPrice = calculateDiscountPrice(json.price, json.discount);
         const amountSaved = calculateAmountSaved(json.price, discountPrice)
@@ -75,14 +75,15 @@ const ListDetails = ({
           amountSaved: amountSaved,
           categoryId: json.categoryId
         });
+        setIndex(index+1);
       } catch (error) {
         console.log("you have an error", error);
       }
     };
 
-    fetchData(itemId);
-  }, [itemId]);
-
+    fetchData(listData.itemId);
+  }, [listData.itemId]);
+  console.log(index)
   const handleAddProduct = (event) => {
     console.log('Adding the product')
     const requestOptions = {

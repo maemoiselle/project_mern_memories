@@ -18,7 +18,7 @@ const Shoppinglist = ({username}) => {
         bucket1={[
           <Navbar />,
 
-          <ShoppingListHead username={location.state.username}/>,
+          <ShoppingListHead currentId={currentId} username={location.state.username}/>,
 
         ]}
       />

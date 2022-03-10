@@ -46,6 +46,7 @@ export default function Component(props) {
   const [notLoggedIn, setNotLoggedIn] = useState(true);
   const [currentId, setCurrentId] = useState(0);
   const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
   const [usernames, setUsernames] = useState([]);
   const dispatch = useDispatch();
 
@@ -75,7 +76,11 @@ export default function Component(props) {
   const classes = useStyles();
 
   const handleLogin = (event) => {
+    const index = users.map(object => object.username).indexOf(username);
+    const thisUser = {username: users[index].username, shoppingListId: users[index].shoppingListId, userId: users[index].userId};
+    setUser(thisUser)
     const stat = checkValue(username, usernames);
+
     setStatus(stat);
     if (status) {
       setNotLoggedIn(false);
@@ -85,28 +90,14 @@ export default function Component(props) {
 
   const handleChange = (event) => {
     setUsername(event.target.value);
+    console.log(username)
 
   };
 
   return (
     <section>
       <Container maxWidth="xs">
-        <Grid
-          container
-          justify="space-between"
-          alignItems="stretch"
-          spacing={3}
-        >
-          <Box pt={8} pb={10}>
-            <Box mx={3} mb={6} textAlign="center">
-              <Link href="#" variant="h4" color="inherit" underline="none">
-                <img
-                  src="mui-assets/img/logo-pied-piper-icon.png"
-                  alt=""
-                  width="40"
-                />
-              </Link>
-            </Box>
+          <Box mt={5}>
             <Box mx={3} mb={3} textAlign="left">
               <Typography variant="h5" component="h2">
                 Sign in
@@ -116,7 +107,7 @@ export default function Component(props) {
               <form noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                  <FormControl variant="standard">
+                  <FormControl variant="standard" fullWidth>
                   <InputLabel id="user-select">Username</InputLabel>
                   <Select
                     labelId="user-select"
@@ -167,13 +158,12 @@ export default function Component(props) {
               </Box>
             </Box>
           </Box>
-        </Grid>
       </Container>
       {notLoggedIn ? (
         <div></div>
       ) : (
         <Redirect
-          to={{ pathname: "/craftskill", state: { username: username } }}
+          to={{ pathname: "/home", state: { username: username, shoppingListId: user.shoppingListId } }}
         />
       )}
     </section>

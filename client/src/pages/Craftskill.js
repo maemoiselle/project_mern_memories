@@ -1,27 +1,34 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import StructureContainer from '../components/__structures/StructureContainer';
-import StructureDiv from '../components/__structures/StructureDiv';
-import Skills from '../components-custom/Skills';
-import Navbar from '../components-custom/Navbar';
+import StructureContainer from "../components/__structures/StructureContainer";
+import StructureDiv from "../components/__structures/StructureDiv";
+import Skills from "../components-custom/Skills";
+import Navbar from "../components-custom/Navbar";
 import { useLocation, Link } from "react-router-dom";
 
 const Craftskill = (props) => {
   const location = useLocation();
   const state = location.state;
-  console.log(state.username);
- 
+  console.log(state.shoppingListId);
+
   return (
     <React.Fragment>
-    <Navbar/>
+      <Navbar />
       <StructureContainer
-        bucket1={[<StructureDiv bucket1={[<Skills username = {location.state.username}/>]} />]}
+        bucket1={[
+          <StructureDiv
+            bucket1={[
+              <Skills
+                username={location.state.username}
+                shoppingListId={location.state.shoppingListId}
+              />,
+            ]}
+          />,
+        ]}
       />
     </React.Fragment>
   );
-}
-
+};
 
 export default Craftskill;
-
