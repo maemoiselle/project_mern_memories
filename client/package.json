@@ -2,6 +2,7 @@
   "name": "mern-stack-client",
   "version": "0.1.0",
   "private": true,
+  
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@fontsource/montserrat": "^4.5.5",

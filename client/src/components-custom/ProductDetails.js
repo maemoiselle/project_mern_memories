@@ -7,7 +7,7 @@ import {
   lighten,
 } from "@material-ui/core/styles/colorManipulator";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import clsx from "clsx";
 import "@fontsource/montserrat/400.css";
@@ -21,6 +21,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import CardMedia from "@material-ui/core/CardMedia";
+import Map from "../pages/Map";
 
 import {
   calculateDiscountPrice,
@@ -41,6 +42,8 @@ const ProductDetails = ({
   difficulty,
   craftId,
 }) => {
+  const [stayOnPage, setStayOnPage] = useState(true);
+  const [aisleLabel, setAisleLable] = useState("");
   const [productData, setProductData] = useState({
     itemId: "",
     itemName: "",
@@ -49,10 +52,11 @@ const ProductDetails = ({
     imageName: "",
     amountSaved: "",
     discountPrice: "",
+    aisle: "",
+    aisleImage:""
   });
   const location = useLocation();
   const state = location.state;
-  console.log(state);
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -65,7 +69,7 @@ const ProductDetails = ({
         const json = await response.json();
 
         const discountPrice = calculateDiscountPrice(json.price, json.discount);
-        const amountSaved = calculateAmountSaved(json.price, discountPrice)
+        const amountSaved = calculateAmountSaved(json.price, discountPrice);
         setProductData({
           itemId: json.itemId,
           itemName: json.itemName,
@@ -74,7 +78,12 @@ const ProductDetails = ({
           imageName: json.imageName,
           discountPrice: discountPrice,
           amountSaved: amountSaved,
+          categoryId: json.categoryId,
+          aisle: json.aisleNumber,
+          aisleImage: json.aisleImageUrl,
         });
+        const label = `A${json.aisleNumber}`;
+        setAisleLable(label);
       } catch (error) {
         console.log("you have an error", error);
       }
@@ -83,24 +92,56 @@ const ProductDetails = ({
     fetchData(material.craftId);
   }, [material]);
 
+  const handleAddProduct = (event) => {
+    console.log("Adding the product");
+    //     const requestOptions = {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', },
+    //       body: JSON.stringify({ shoppingListIdReal: 1, itemId: productData.itemId, categoryId: productData.categoryId, username: location.state.username })
+
+    //     };
+    //   fetch('http://localhost:8080/AddShoppingLists', requestOptions)
+    //   .then(async response => {
+    //     const isJson = response.headers.get('content-type')?.includes('application/json');
+    //     const data = isJson && await response.json();
+
+    //     // check for error response
+    //     if (!response.ok) {
+    //         // get error message from body or default to response status
+    //         const error = (data && data.message) || response.status;
+    //         return Promise.reject(error);
+    //     }
+
+    // })
+    //       .then(response => response.json())
+  };
+
+  const handleClick = (event) => {
+    setStayOnPage(false);
+  };
+
   if (material.craftIdReal === location.state.craftId) {
-    if (productData.discount !== 0.00) {
+    if (productData.discount !== 0.0) {
       return (
         <Container>
           <Box>
             <Grid container>
               <Grid item xs={12} md={3}>
                 <Card classes={classes.skillCard}>
-                <CardMedia
-                component="img"
-                image={productData.imageName}
-                alt=""
-                className={classes.image}
-                />
+                  <CardMedia
+                    component="img"
+                    image={productData.imageName}
+                    alt=""
+                    className={classes.image}
+                  />
                   <Box ml={2} direction="row">
                     <Typography variant="subtitle1">
                       {productData.itemName}
-                      <Chip color="secondary" label="A3" />
+                      <Chip
+                        color="secondary"
+                        label={aisleLabel}
+                        onClick={handleClick}
+                      />
                     </Typography>
                   </Box>
                   <Box ml={2} direction="row">
@@ -117,7 +158,11 @@ const ProductDetails = ({
                     </Typography>
                   </Box>
                   <Box mr={1} mb={1} textAlign="center">
-                    <Button variant="contained" color="primary">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => handleAddProduct()}
+                    >
                       Add
                     </Button>
                   </Box>
@@ -125,38 +170,74 @@ const ProductDetails = ({
               </Grid>
             </Grid>
           </Box>
+          {stayOnPage ? (
+            <div></div>
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/map",
+                state: {
+                  username: location.state.username,
+                  productData: productData,
+                },
+              }}
+            />
+          )}
         </Container>
       );
     } else {
       return (
-            <Grid container>
-              <Grid item xs={12} md={3}>
-                <Card classes={classes.skillCard}>
+        <Container>
+          <Grid container>
+            <Grid item xs={12} md={3}>
+              <Card classes={classes.skillCard}>
                 <CardMedia
-                component="img"
-                image={productData.imageName}
-                alt=""
-                className={classes.image}
+                  component="img"
+                  image={productData.imageName}
+                  alt=""
+                  className={classes.image}
                 />
-                  <Box ml={2} direction="row">
-                    <Typography variant="subtitle1">
-                      {productData.itemName}
-                      <Chip color="secondary" label="A3" />
-                    </Typography>
-                  </Box>
-                  <Box ml={2} direction="row">
-                    <Typography variant="body4">
-                      ${productData.discountPrice}
-                    </Typography>
-                  </Box>
-                  <Box mr={1} mb={1} textAlign="center">
-                    <Button variant="contained" color="primary">
-                      Add
-                    </Button>
-                  </Box>
-                </Card>
-              </Grid>
+                <Box ml={2} direction="row">
+                  <Typography variant="subtitle1">
+                    {productData.itemName}
+                    <Chip
+                      color="secondary"
+                      label={aisleLabel}
+                      onClick={handleClick}
+                    />
+                  </Typography>
+                </Box>
+                <Box ml={2} direction="row">
+                  <Typography variant="body4">
+                    ${productData.discountPrice}
+                  </Typography>
+                </Box>
+                <Box mr={1} mb={1} textAlign="center">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleAddProduct()}
+                  >
+                    Add
+                  </Button>
+                </Box>
+              </Card>
             </Grid>
+          </Grid>
+          {stayOnPage ? (
+            <div></div>
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/map",
+                state: {
+                  username: location.state.username,
+                  productData: productData,
+                },
+              }}
+            />
+          )}
+        </Container>
       );
     }
   } else {

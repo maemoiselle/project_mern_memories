@@ -2,7 +2,7 @@ import { createTheme} from '@material-ui/core/styles';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'montserrat, Roboto',
+    fontFamily: 'Montserrat, Roboto',
   },
   
     palette: {
@@ -17,6 +17,13 @@ const theme = createTheme({
         main: '#3373b7',
         // dark: will be calculated from palette.secondary.main,
         contrastText: '#ffcc00',
+      },
+      neutral: {
+        white:'#FFF',
+        lightGrey: '#d7d7d7',
+        mediumGrey: '#666',
+        darkGrey: '#333',
+        black: '#000',
       },
       // Used by `getContrastText()` to maximize the contrast between
       // the background and the text.

@@ -20,11 +20,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import StructureDiv from "../components/__structures/StructureDiv";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/700.css";
-import beeStich from "../images/craftImages/beeStitch.png";
-import botanicalWoodSign from "../images/craftImages/botanicalWoodSign.png";
-import coaster from "../images/craftImages/beeStitch.png";
-import vases from "../images/craftImages/vases.png";
-import PRODUCTIMG from "../images/itemImages/Index";
+
 import ProductDetails from "./ProductDetails";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,9 +39,7 @@ export default function Component({
   const location = useLocation();
   const state = location.state;
   console.log(state);
-  const [imgLink, setImgLink] = useState(
-    `../images/craftImages/${location.state.craftImg}.png`
-  );
+
   const materials = useSelector((state) => state.materials);
   
   const classes = useStyles();
@@ -148,6 +142,12 @@ export default function Component({
             </Box>,
           ]}
         />
+        <Box textAlign="center">
+      <Link to={{
+        pathname: "/shoppingList",
+        state: { username: location.state.username },
+      }}>View my Shoppinglist</Link>
+    </Box>
         ,
       </Container>
     </section>
