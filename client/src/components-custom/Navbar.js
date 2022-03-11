@@ -15,7 +15,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
+import TextField from "@material-ui/core/TextField";
+import { InputBase } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
@@ -26,8 +27,12 @@ import ListAltRoundedIcon from '@material-ui/icons/ListAltRounded';
 import AccountBoxRoundedIcon from '@material-ui/icons/AccountBoxRounded';
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/700.css";
+import Logo from "../images/Michaels_Logo_White.svg";
 
 const useStyles = makeStyles((theme) => ({
+  toolbar: {
+    flexWrap: 'wrap',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -46,7 +51,47 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerContainer: {
     width: 256,
-  }
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor:"#fff",
+    '&:hover': {
+      backgroundColor: (theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    marginBottom: 4,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 1),
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    paddingBottom: 2,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
 }
 ));
 
@@ -76,15 +121,12 @@ const handleSubmitCrafts = (event) => {
 
   return (
 <AppBar position="static">
-  <Toolbar>
+  <Toolbar className={classes.toolbar}>
     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
       <MenuIcon />
     </IconButton>
-    <Link href="#" variant="h5" color="inherit" underline="none" className={classes.linkBrand}>
-      <img src="mui-assets/img/logo-pied-piper-white.png" alt="" width="120" />
-    </Link>
     <Link href="#" variant="h5" color="inherit" underline="none" className={classes.linkBrandSmall}>
-      <img src="mui-assets/img/logo-pied-piper-white-icon.png" alt="" width="32" />
+      <img src={Logo} alt="" width="80" />
     </Link>
     <IconButton color="inherit">
       <ListAltRoundedIcon />
@@ -92,6 +134,18 @@ const handleSubmitCrafts = (event) => {
     <IconButton color="inherit">
       <ShoppingCartRoundedIcon />
     </IconButton>
+    <div className={classes.search}>
+          <div className={classes.searchIcon}>
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </div>
   </Toolbar>
   <Drawer anchor="left" open={state.open} onClose={toggleDrawer(false)}>
   <div className={classes.drawerContainer}>

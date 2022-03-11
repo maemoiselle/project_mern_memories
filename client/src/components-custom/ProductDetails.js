@@ -21,6 +21,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import CardMedia from "@material-ui/core/CardMedia";
+import { Paper, ButtonBase } from "@material-ui/core";
 import Map from "../pages/Map";
 
 import {
@@ -32,7 +33,12 @@ const useStyles = makeStyles((theme) => ({
   image: {
     maxWidth: "100%",
   },
+
+  img:{
+    
+  }
 }));
+
 
 const ProductDetails = ({
   material,
@@ -238,6 +244,7 @@ const ProductDetails = ({
               }}
             />
           )}
+      
         </Container>
       );
     }

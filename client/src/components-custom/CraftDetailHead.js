@@ -18,8 +18,11 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import StructureDiv from "../components/__structures/StructureDiv";
+import Chip from "@material-ui/core/Chip";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/700.css";
+import Sketch from "../images/crafts/sketch.jpg";
+import Sign from "../images/crafts/autumnSign.jpg";
 
 import ProductDetails from "./ProductDetails";
 
@@ -35,7 +38,8 @@ export default function Component({
   craftImg,
   craftId,
   difficulty,
-  shoppingListId
+  shoppingListId,
+  level,
 }) {
   const location = useLocation();
   const state = location.state;
@@ -65,10 +69,8 @@ export default function Component({
         <Box px={1} textAlign="left">
           <Typography variant="h4">{location.state.craftName}</Typography>
         </Box>
-        <Box px={1} textAlign="left">
-          <Typography variant="body1" gutterBottom={true}>
-            [Skill Badge]
-          </Typography>
+        <Box px={1} py={2} textAlign="left">
+          <Chip color="secondary" label={location.state.level}></Chip>
         </Box>
         <Box textAlign="left" py={2}>
           <Button href="#" color="secondary">
@@ -94,13 +96,13 @@ export default function Component({
               <Card classes={classes.skillCard}>
                 <CardActionArea href="">
                   <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-                    alt=""
+                    src={Sketch}
+                    alt="Botanical Sketch"
                     className={classes.image}
                   />
                   <Box pl={1}>
                     <Typography variant="body1" gutterBottom={true}>
-                      [Craft Name]
+                      Floral Print
                     </Typography>
                   </Box>
                 </CardActionArea>
@@ -111,13 +113,13 @@ export default function Component({
               <Card classes={classes.skillCard}>
                 <CardActionArea href="">
                   <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-                    alt=""
+                    src={Sign}
+                    alt="Custon Cards"
                     className={classes.image}
                   />
                   <Box pl={1}>
                     <Typography variant="body1" gutterBottom={true}>
-                      [Craft Name]
+                      Custom Cards
                     </Typography>
                   </Box>
                 </CardActionArea>
@@ -137,6 +139,7 @@ export default function Component({
                     craftImg={craftImg}
                     difficulty={difficulty}
                     craftId={craftId}
+                    level={location.state.level}
                   />
                 </Grid>
               ))}

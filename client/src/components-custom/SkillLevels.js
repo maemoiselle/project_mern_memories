@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar'
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/700.css";
 import Oragami from "../images/crafts/oragami.jpg";
@@ -25,6 +26,13 @@ import Chip from "@material-ui/core/Chip";
 const useStyles = makeStyles((theme) => ({
   image: {
     maxWidth: '100%',
+  },
+  avatar: {
+    width: theme.spacing(12),
+    height: theme.spacing(12),
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: theme.spacing(2)
   },
 }
 ));
@@ -49,29 +57,23 @@ const SkillLevels = ({ setCurrentId, level, difficulty, username }) => {
     <Box pb={3} textAlign="center">
       <Grid container spacing={2}>
         <Grid item xs={4} md={4}>
-          <Card classes={classes.skillCard}>
-            <CardActionArea href="">
-              <img src={Stationary} alt="" className={classes.image} />
+
+              <Avatar src={Stationary} alt="" className={classes.avatar} />
               <Typography variant="body1" gutterBottom={true}>Stationary</Typography>
-            </CardActionArea>
-          </Card>
+
         </Grid>
 
         <Grid item xs={4} md={4}>
-          <Card classes={classes.skillCard}>
-            <CardActionArea href="">
-              <img src={Oragami} alt="" className={classes.image} />
+  
+              <Avatar src={Oragami} alt="" className={classes.avatar} />
               <Typography variant="body1" gutterBottom={true}>Paper Crafts</Typography>
-            </CardActionArea>
-          </Card>
+
         </Grid>
         <Grid item xs={4} md={4}>
-          <Card classes={classes.skillCard}>
-            <CardActionArea href="">
-              <img src={Flowerpots} alt="" className={classes.image} />
+
+              <Avatar src={Flowerpots} alt="" className={classes.avatar} />
               <Typography variant="body1" gutterBottom={true}>Painting</Typography>
-            </CardActionArea>
-          </Card>
+
         </Grid>
       </Grid>
     </Box>

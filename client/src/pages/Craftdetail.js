@@ -25,7 +25,7 @@ const Craftdetail = ({craftName, craftImg, craftId, difficulty, username}) => {
         bucket1={[
           <Navbar />,
 
-          <CraftDetailHead setCurrentID={setCurrentId} username={location.state.username}/>,
+          <CraftDetailHead setCurrentID={setCurrentId} username={location.state.username} level={location.state.level}/>,
 
         ]}
       />

@@ -44,6 +44,7 @@ const Craft = ({
                 craftImg: craft.imageName,
                 username: username,
                 shoppingListId: location.state.shoppingListId,
+                level: location.state.level,
               },
             }}  style={{ textDecoration: "none", color: "#666" }}
           >
