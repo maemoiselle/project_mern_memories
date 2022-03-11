@@ -54,6 +54,9 @@ const SkillLevels = ({ setCurrentId, level, difficulty, username }) => {
     <Box pb={3} pt={2} textAlign="left">
       <Typography variant="h4" gutterBottom={true}>Explore {level} DIY Crafts for All Ages</Typography>
     </Box>
+    <Box pb={2} pt={2} textAlign="left">
+      <Typography variant="h5" gutterBottom={true}>Browse by Category</Typography>
+    </Box>
     <Box pb={3} textAlign="center">
       <Grid container spacing={2}>
         <Grid item xs={4} md={4}>
